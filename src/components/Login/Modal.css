@@ -1,0 +1,70 @@
+.modal-style{
+    background-color: #f7f7fc;
+    width: 31%;
+    margin: 33%;
+    margin-top: 10%;
+}
+
+.grid-recpass{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.5fr 1fr;
+    padding: 10px;
+}
+
+.btn-close{
+    justify-self: end;
+    margin: 5px;
+    font-size: 2rem;
+    grid-row: 1;
+    cursor: pointer;
+}
+
+.about-recpass{
+    grid-row: 2;
+    color:#242342;
+    text-align: center;
+	align-self: end;
+}
+
+.p-recpass-email{
+    color:#242342;
+    grid-row: 3;
+    text-align: start;
+	align-self: end;
+}
+
+.inp-recpass-email input{
+	box-sizing: border-box;
+	width: 100%;
+	height: 70%;
+    padding-left: 40px;
+	background-color: #d8d6d6;
+	border: none;
+	border-radius: 3px;
+}
+
+.inp-recpass-email i{
+	position: absolute;
+	left: 8px;
+	top: 9px;
+	font-size: 1.5rem;
+	color:#555557;
+}
+
+.inp-recpass-email{
+    grid-row: 4;
+    position: relative;
+}
+
+.btn-recpass{
+    grid-row: 6;
+    justify-self: center;
+}
+
+@media (orientation: portrait) { 
+    .modal-style{
+        width: 50%;
+        margin: 25%;
+    }
+}
+
