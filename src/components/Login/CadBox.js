@@ -15,12 +15,11 @@ export default function CadBox (props){
 		if (name !== "") {
 			firebaseAppAuth.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
-				setUserUid(result.user.uid);
 				firebase.auth().currentUser.updateProfile({
 					displayName: name
-				  })
+				})
 				firebase.firestore().collection('users').doc(result.user.uid).set({
-					userUid,
+					userUid: result.user.uid,
 					name,
 					sobrenome,
 					email

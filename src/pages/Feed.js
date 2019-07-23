@@ -6,37 +6,46 @@ import ModalShare from '../components/ModalShare';
 
 export default function (props) {
 
-const [funcionarios, setFuncionarios] = useState([])
+    
+const [events, setEvents] = useState([]);
 const [modalIsOpen, setModalIsOpen] = useState(false);
 const [modalShareIsOpen, setModalShareIsOpen] = useState(false);
 
 useEffect(() => {
-    console.log("oi")
-    firebase.firestore().collection("users")
+    firebase.firestore().collection("events")
     .get()
     .then(function(querySnapshot) {
-      const listFuncionarios = querySnapshot.docs.map(function(doc) {
+      const listEvents = querySnapshot.docs.map(function(doc) {
         return doc.data()
       });
-      setFuncionarios(listFuncionarios);
+      setEvents(listEvents);
     })
 }, [])
 
 useEffect(() => {
-    console.log(funcionarios)
-}, [funcionarios])
+    console.log(events)
+}, [events])
 
 
     return(
         <div>
         <section>
-        <button onClick={() => setModalIsOpen(true)}>clicaaaa</button>
-        <button onClick={() => setModalShareIsOpen(true)}>compartilha</button>
+        <button onClick={() => setModalIsOpen(true)}>criar evento</button>
+        <div>
+        {events.map((curr, index) => {
+            return <div key={index}>
+                <p>{curr.eventName}</p>
+                <p>{curr.description}</p>
+                <p>{curr.date}</p>
+            <button onClick={() => setModalShareIsOpen(true)}>compartilha</button>
+            </div>
+        })}
+        </div>
         <Modal isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
-          <ModalEvent values={funcionarios}></ModalEvent> 
+          <ModalEvent></ModalEvent> 
         </Modal>
         <Modal isOpen={modalShareIsOpen} onRequestClose={()=>setModalShareIsOpen(false)}>
-          <ModalShare></ModalShare> 
+          <ModalShare ></ModalShare> 
         </Modal>
         </section>
         </div>
