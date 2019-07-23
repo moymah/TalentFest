@@ -9,20 +9,23 @@ export default function CadBox (props){
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [sobrenome, setSobrenome] = useState('');
+	const [userUid, setUserUid] = useState('');
 
 	function createUser () {
 		if (name !== "") {
 			firebaseAppAuth.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
+				setUserUid(result.user.uid);
 				firebase.auth().currentUser.updateProfile({
 					displayName: name
 				  })
 				firebase.firestore().collection('users').doc(result.user.uid).set({
+					userUid,
 					name,
 					sobrenome,
 					email
 				})
-				// return props.history.push("/" + area)   
+				return props.history.push("/feed" )   
 			})
 			.catch((error) => {
 				console.log(error)
@@ -34,7 +37,7 @@ export default function CadBox (props){
 	}
     
 	return (
-		<container>
+		<section>
 			<p>NOME</p>
 			<section>
 				<input type="text" value={name}
@@ -56,6 +59,6 @@ export default function CadBox (props){
 				onChange={(event) => setPassword(event.target.value)} />
 			</section>
 			<button onClick={() => createUser()}>ENTRAR</button>
-		</container>
+		</section>
 	);
 }

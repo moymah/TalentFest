@@ -12,7 +12,7 @@ export default function LoginBox (props){
     firebaseAppAuth.signInWithEmailAndPassword(email, password)
     .then((result) => {
       firebase.firestore().collection('users').doc(result.user.uid).get().then((result) =>{
-      return props.history.push("/")
+      return props.history.push("/feed")
     })
     }).catch(() => {
       alert("E-mail e/ou senha incorreto(s).");

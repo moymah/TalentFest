@@ -1,0 +1,5 @@
+[{
+    "origin":["http://localhost:3000"],
+    "method":["PUT","GET","POST"],
+    "maxAgeSeconds": 3600
+}]
