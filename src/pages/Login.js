@@ -13,7 +13,7 @@ function Login (props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
-    <div className="App">
+    <div>
         <div className="div-nav">
           <nav className="nav_tabs">
   			    <ul>
@@ -30,7 +30,7 @@ function Login (props) {
             </ul>
           </nav>
         </div>
-        <Modal className="modal-style" isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
+        <Modal isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
           <PasswordModal onClickClose={()=>setModalIsOpen(false)}/>  
         </Modal>
     </div>
