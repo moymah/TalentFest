@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import PasswordModal from '../components/Login/PasswordModal'
 import firebase from '../firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
+import "../components/app.css"
 
 const firebaseAppAuth = firebase.auth();
 
@@ -15,11 +16,11 @@ function Login (props) {
 
   return (
     <div>
-      <div>
-        <figure className="logo"><img src={Logo}></img></figure>
+      <div className="logo">
+        <figure ><img src={Logo}></img></figure>
       </div>
-        <div className="div-nav">
-          <nav className="nav_tabs">
+        <div className="div-na">
+          <nav className="nav_tabs ">
   			    <ul>
 	  			    <li>
                 <Tab classNameContent="tab-content" id="tab1" text="LOGIN" checked="true"> 
