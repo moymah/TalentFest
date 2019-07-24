@@ -49,7 +49,7 @@ function editText(value, index, id) {
                 <button class="waves-effect waves-light btn-small" onClick={() => saveEdit(id)}>Salvar</button>
                 </section>
         }else{
-        return <p>{value}</p>}
+        return <p class="black-text" >{value}</p>}
   }
 
   function timeNow() {
@@ -129,7 +129,7 @@ function checkShare(){
       <div class="card-action">
       <button class ='waves-effect waves-light btn orange custom-share-button' onClick={() => {setModalShareIsOpen(true); setEventSelected(curr.idEvent)}}>compartilha</button>
       {checkLike(curr.liked, index)}
-      <button onClick={() => setEditIsSelected(index)}>editar</button>
+      <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setEditIsSelected(index)}>editar</button>
       </div>
       </div>
       </div>
@@ -143,11 +143,10 @@ function checkShare(){
 
 return(
   <div>
-    <NavBar />
           <section>
             <h3>Feed de Eventos</h3>
-          <button onClick={() => setFilterSelected("criado")}>eventos que criei</button>
-          <button onClick={() => setFilterSelected("recebido")}>eventos que recebi</button>
+          <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setFilterSelected("criado")}>eventos que criei</button>
+          <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setFilterSelected("recebido")}>eventos que recebi</button>
           <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setModalIsOpen(true)}>criar evento</button>
           <div>
           {checkShare()}
