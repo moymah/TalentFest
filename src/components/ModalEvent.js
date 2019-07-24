@@ -4,8 +4,21 @@ import UploadImage from './UploadImage';
 
 export default function () {
     const [eventName, setEventName] = useState('');
+    const [events, setEvents] = useState([]);
     const [description, setDescription] = useState('');
     const [currentUser, setCurrentUser] = useState('');
+
+    useEffect(() => {
+        firebase.firestore().collection("events")
+        .get()
+        .then(function(querySnapshot) {
+          const listEvents = querySnapshot.docs.map(function(doc) {
+            return doc.data()
+          });
+          setEvents(listEvents);
+        })
+    }, [])
+
 
     useEffect(() => {
        setCurrentUser(firebase.auth().currentUser)
@@ -24,23 +37,29 @@ export default function () {
 
     
 function sendEventToFirebase() {
+    if(eventName.length > 80 || eventName.length === 0 || description.length > 500 || description.length > 500 ){
+        alert("Não foi possivel enviar seu evento! Cheque o tamanho dos textos informados.")
+    }else{
     firebase.firestore().collection('events').doc().set({
         eventName,
         description,
         'idUser': currentUser.uid,
         'name': currentUser.displayName,
-        'date': timeNow()
+        'date': timeNow(),
+        'idEvent': events.length,
+        'liked' : false 
     }).then(
         alert("Evento criado com sucesso!")
-    ).catch(
-        alert("Oops.")
     )
+    }
 }
     
     return(
         <section>
-        <input type="text" onChange={(event) => setEventName(event.target.value)}placeholder="Nome do Evento" id="event"/>
-        <textarea cols="40" onChange={(event) => setDescription(event.target.value)} rows="6" placeholder="Descrição"  id="description"/>
+        <input type="text" onChange={(event) => setEventName(event.target.value)}placeholder="Nome do Evento - Até 80 caracteres" id="event"/>
+        <span>{eventName.length}</span>
+        <textarea cols="40" onChange={(event) => setDescription(event.target.value)} rows="6" placeholder="Descrição - Até 500 caracteres"  id="description"/>
+        <span>{description.length}</span>
         <input type="file" id="photo" onChange={(event) => UploadImage(event.target.files) }/>
         <button onClick={() => sendEventToFirebase()}>Criar Evento</button> 
         </section>
