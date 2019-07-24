@@ -25,7 +25,7 @@
 }
 
 .nav_tabs ul li:first-child{
-    width: 50%;
+    width: 40%;
 }
 
 .tab-content section{
@@ -53,7 +53,7 @@
     padding: 15px;
     padding-bottom: 5px;
     font-size: 1rem;    
-    border-radius: 12px;
+    border-radius: 25px;
     cursor: pointer;
     text-align: center;    
     box-sizing: border-box;

@@ -24,19 +24,19 @@ export default function LoginBox (props){
     <section className="back-form ">
       <p>E-MAIL</p>
       <div>
-        <input type="text" value={email}
+        <input className="input-style" type="text" value={email}
         onChange={(event) => setEmail(event.target.value)} />
       </div>
       <p>SENHA</p>
       <div>
-        <input type="password" value={password}
+        <input  className="input-style" type="password" value={password}
         onChange={(event) => setPassword(event.target.value)} />
       </div>
       {/* <Button onClick={props.fgtOnClick}>ESQUECEU SUA SENHA?</Button>
       <Button onClick={() => signIn()}>ENTRAR</Button> */}
 
       <Button text="ENTRAR" onClick={() => signIn()}/>
-      <Button text="ESQUECEU SUA SENHA?" onClick={props.fgtOnClick}/>
+      <p className="text-color"  onClick={props.fgtOnClick}>Esqueceu a senha ?</p>
       
     </section>
   );

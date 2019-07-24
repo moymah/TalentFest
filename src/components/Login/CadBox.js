@@ -40,22 +40,22 @@ export default function CadBox (props){
 		<section className="back-form">
 			<p>NOME</p>
 			<section>
-				<input type="text" value={name}
+				<input  className="input-style" type="text" value={name}
 				onChange={(event) => setName(event.target.value)} />
 			</section>
 			<p>SOBRENOME</p>
 			<section>
-				<input type="text" value={sobrenome}
+				<input  className="input-style" type="text" value={sobrenome}
 				onChange={(event) => setSobrenome(event.target.value)} />
 			</section>
 			<p>E-MAIL</p>
 			<section>
-				<input type="text" value={email}
+				<input  className="input-style" type="text" value={email}
 				onChange={(event) => setEmail(event.target.value)} />
 			</section>
 			<p>SENHA</p>
 			<section>
-				<input type="password" value={password}
+				<input className="input-style" type="password" value={password}
 				onChange={(event) => setPassword(event.target.value)} />
 			</section>
 			{/* <button onClick={() => createUser()}>ENTRAR</button> */}

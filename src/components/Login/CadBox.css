@@ -1,8 +1,8 @@
 .back-form {
-    background-image: url(../../images/fundo.png);
+    /* background-image: url(../../images/fundo.png); */
     background-repeat: no-repeat;
     position: relative;
-    /* opacity: 0.5; */
+  
     background-position: left;
     background-size: 65%;
     width: 100%;
@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10%;
+   
 
     
     }
