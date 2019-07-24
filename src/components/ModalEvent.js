@@ -4,7 +4,7 @@ import UploadImage from './UploadImage';
 import './ModalEvent.css'
 import M from "materialize-css";
 
-export default function () {
+export default function (props) {
     const [eventName, setEventName] = useState('');
     const [events, setEvents] = useState([]);
     const [description, setDescription] = useState('');
@@ -52,9 +52,11 @@ function sendEventToFirebase(event) {
         'name': currentUser.displayName,
         'date': timeNow(),
         'idEvent': events.length,
-        'liked' : false 
+        'liked' : false, 
+        'compartilhado': ["a","b"]
     }).then(
-        alert("Evento criado com sucesso!")
+        alert("Evento criado com sucesso!"),
+        props.closeModal(false)
     )
     }
 }
