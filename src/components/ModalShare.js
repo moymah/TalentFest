@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import firebase from '../firebaseConfig';
 
+
 export default function (props) {
     const [funcionarios, setFuncionarios] = useState([]);
     const [selected, setSelected] = useState('');
@@ -23,8 +24,10 @@ export default function (props) {
  
     
     return(
+        
+        
         <section>
-        <input list="search" name="searchFuncionarios"></input>
+            <input list="search" name="searchFuncionarios"></input>
         <section>
         {funcionarios.map( (elem, index) => {
             return <section key={index} onClick={() => setSelected(elem.userUid)}>
