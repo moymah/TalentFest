@@ -1,0 +1,17 @@
+.button {
+    width: 180px;
+    height: 55px;
+    margin: 20px 5px 0;
+    background-color: #C64706;
+    color: #C1C1C1;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .button-size {
+    width:330px;
+    height: 60px;
+    margin: 5px 20px 5px 30px;
+  
+  }
