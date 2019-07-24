@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react';
 import firebase from '../firebaseConfig';
 import UploadImage from './UploadImage';
 import './ModalEvent.css'
-import M from "materialize-css";
+// import M from "materialize-css";
 
 export default function (props) {
     const [eventName, setEventName] = useState('');

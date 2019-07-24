@@ -100,20 +100,29 @@ function checkLike(bool, index){
 function checkShare(){
   return events.map((curr, index) => {
     if(filterSelected === "recebido" && curr.compartilhado.includes(firebase.auth().currentUser.uid)){
-      return <div key={index}>
-          <h2>{curr.eventName}</h2>
-          {editText(curr.description, index, curr.idEvent)}
-          <p>{curr.date}</p>
-      <button class ='waves-effect waves-light btn orange custom-share-button' onClick={() => {setModalShareIsOpen(true); setEventSelected(curr.idEvent)}}>compartilha</button>
-      {checkLike(curr.liked, curr.idEvent)}
-      </div>
+      return <div class="row">
+      <div class="col s12 m6">
+        <div class="card yellow lighten-5">
+          <div class="card-content white-text"> 
+            <div key={index}>
+        <h2 class="card-title black-text">{curr.eventName}</h2>
+        {editText(curr.description, index, curr.idEvent)}
+        <p class="black-text" >{curr.date}</p>
+        <div class="card-action">
+        <button class ='waves-effect waves-light btn orange custom-share-button' onClick={() => {setModalShareIsOpen(true); setEventSelected(curr.idEvent)}}>compartilha</button>
+        {checkLike(curr.liked, index)}
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
     }else if(filterSelected === "criado" && curr.idUser === firebase.auth().currentUser.uid){
-      return
-    <div class="row">
-            <div class="col s12 m6">
-              <div class="card yellow lighten-5">
-                <div class="card-content white-text"> 
-    <div key={index}>
+      return <div class="row">
+    <div class="col s12 m6">
+      <div class="card yellow lighten-5">
+        <div class="card-content white-text"> 
+          <div key={index}>
       <h2 class="card-title black-text">{curr.eventName}</h2>
       {editText(curr.description, index, curr.idEvent)}
       <p class="black-text" >{curr.date}</p>
@@ -123,34 +132,33 @@ function checkShare(){
       <button onClick={() => setEditIsSelected(index)}>editar</button>
       </div>
       </div>
+      </div>
+      </div>
+      </div>
+      </div>
     } 
   }
 ) 
 }
 
-    return(
-        <div>
-          <NavBar />
-        <section>
-          <h3>Feed de Eventos</h3>
-        <button onClick={() => setFilterSelected("criado")}>eventos que criei</button>
-        <button onClick={() => setFilterSelected("recebido")}>eventos que recebi</button>
-        <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setModalIsOpen(true)}>criar evento</button>
-        <div>
-        {checkShare()}
-            </div>
-            </div>
-      </div>
-    </div>
+return(
+  <div>
+    <NavBar />
+          <section>
+            <h3>Feed de Eventos</h3>
+          <button onClick={() => setFilterSelected("criado")}>eventos que criei</button>
+          <button onClick={() => setFilterSelected("recebido")}>eventos que recebi</button>
+          <button class ='waves-effect waves-light btn orange custom-button ' onClick={() => setModalIsOpen(true)}>criar evento</button>
+          <div>
+          {checkShare()}
+          </div>
+          <Modal isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
+            <ModalEvent closeModal={setModalIsOpen} ></ModalEvent> 
+          </Modal>
+          <Modal isOpen={modalShareIsOpen} onRequestClose={()=>setModalShareIsOpen(false)}>
+            <ModalShare closeModal={setModalShareIsOpen} event={eventSelected} ></ModalShare> 
+        </Modal>
+          </section>
   </div>
-        </div>
-        <Modal isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
-          <ModalEvent closeModal={setModalIsOpen} ></ModalEvent> 
-        </Modal>
-        <Modal isOpen={modalShareIsOpen} onRequestClose={()=>setModalShareIsOpen(false)}>
-          <ModalShare closeModal={setModalShareIsOpen} event={eventSelected} ></ModalShare> 
-        </Modal>
-        </section>
-        </div>
 )
 }
