@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import firebase from '../../firebaseConfig';
-
+import './CadBox.css'
+import Button from '../button'
 const firebaseAppAuth = firebase.auth();
 
 export default function LoginBox (props){
@@ -20,7 +21,7 @@ export default function LoginBox (props){
   }
 
   return (
-    <section>
+    <section className="back-form ">
       <p>E-MAIL</p>
       <div>
         <input type="text" value={email}
@@ -31,8 +32,12 @@ export default function LoginBox (props){
         <input type="password" value={password}
         onChange={(event) => setPassword(event.target.value)} />
       </div>
-      <button onClick={props.fgtOnClick}>ESQUECEU SUA SENHA?</button>
-      <button onClick={() => signIn()}>ENTRAR</button>
+      {/* <Button onClick={props.fgtOnClick}>ESQUECEU SUA SENHA?</Button>
+      <Button onClick={() => signIn()}>ENTRAR</Button> */}
+
+      <Button text="ENTRAR" onClick={() => signIn()}/>
+      <Button text="ESQUECEU SUA SENHA?" onClick={props.fgtOnClick}/>
+      
     </section>
   );
 }

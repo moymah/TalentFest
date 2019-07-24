@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import firebase from '../../firebaseConfig';
-
+import './CadBox.css'
+import Button from '../button'
 const firebaseAppAuth = firebase.auth();
 
 export default function CadBox (props){
@@ -37,7 +38,7 @@ export default function CadBox (props){
 	}
     
 	return (
-		<section>
+		<section className="back-form">
 			<p>NOME</p>
 			<section>
 				<input type="text" value={name}
@@ -58,7 +59,8 @@ export default function CadBox (props){
 				<input type="password" value={password}
 				onChange={(event) => setPassword(event.target.value)} />
 			</section>
-			<button onClick={() => createUser()}>ENTRAR</button>
+			{/* <button onClick={() => createUser()}>ENTRAR</button> */}
+			<Button text="ENTRAR" onClick={() => createUser()}/>
 		</section>
 	);
 }
