@@ -39,7 +39,8 @@ export default function () {
         }
 
     
-function sendEventToFirebase() {
+function sendEventToFirebase(event) {
+    event.preventDefault();
     if(eventName.length > 80 || eventName.length === 0 || description.length > 500 || description.length > 500 ){
         alert("Não foi possivel enviar seu evento! Cheque o tamanho dos textos informados.")
     }else{
@@ -69,7 +70,7 @@ function sendEventToFirebase() {
           <label for="event-photo" class="event-labels">Insira uma foto:</label> 
           <input className="file" type="file" id="photo" onChange={(event) => UploadImage(event.target.files) }/>
            </div>
-          <button className="event-button" onClick={() => sendEventToFirebase()}>Criar Evento</button> 
+          <button className="event-button" onClick={(event) => sendEventToFirebase(event)}>Criar Evento</button> 
         </form>
 
     )
