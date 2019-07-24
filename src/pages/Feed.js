@@ -13,6 +13,8 @@ const [modalShareIsOpen, setModalShareIsOpen] = useState(false);
 const [editIsSelected, setEditIsSelected] = useState('');
 const [newText, setNewText] = useState('');
 const [auxState, setAuxState] = useState([]);
+const [eventSelected, setEventSelected] = useState('');
+const [filterSelected, setFilterSelected] = useState('recebido');
 
 useEffect(() => {
     firebase.firestore().collection("events")
@@ -64,7 +66,6 @@ function saveEdit(id) {
         }
       });
       setEditIsSelected('');
-
       setAuxState(renewMinorState([1,id,3]))
 
 })
@@ -89,15 +90,31 @@ function confirmLike (bool, id) {
 function checkLike(bool, index){
   return bool === true ? 
   <button onClick={() => confirmLike(!bool, index)}>curtido</button> : 
-  <button onClick={() => confirmLike(!bool, index)}>curtir</button>
-           
+  <button onClick={() => confirmLike(!bool, index)}>curtir</button>           
 }
 
-function checkOwner (id, index) {
-  if(id === firebase.auth().currentUser.uid) { 
-    return <button onClick={() => setEditIsSelected(index)}>editar</button>
+function checkShare(){
+  return events.map((curr, index) => {
+    if(filterSelected === "recebido" && curr.compartilhado.includes(firebase.auth().currentUser.uid)){
+      return <div key={index}>
+          <h2>{curr.eventName}</h2>
+          {editText(curr.description, index, curr.idEvent)}
+          <p>{curr.date}</p>
+      <button onClick={() => {setModalShareIsOpen(true); setEventSelected(curr.idEvent)}}>compartilha</button>
+      {checkLike(curr.liked, curr.idEvent)}
+      </div>
+    }else if(filterSelected === "criado" && curr.idUser === firebase.auth().currentUser.uid){
+      return <div key={index}>
+      <h2>{curr.eventName}</h2>
+      {editText(curr.description, index, curr.idEvent)}
+      <p>{curr.date}</p>
+      <button onClick={() => {setModalShareIsOpen(true); setEventSelected(curr.idEvent)}}>compartilha</button>
+      {checkLike(curr.liked, index)}
+      <button onClick={() => setEditIsSelected(index)}>editar</button>
+      </div>
+    } 
   }
-            
+) 
 }
 
 
@@ -105,23 +122,16 @@ function checkOwner (id, index) {
         <div>
         <section>
         <button onClick={() => setModalIsOpen(true)}>criar evento</button>
+        <button onClick={() => setFilterSelected("criado")}>eventos que criei</button>
+        <button onClick={() => setFilterSelected("recebido")}>eventos que recebi</button>
         <div>
-        {events.map((curr, index) => {
-            return <div key={index}>
-                <h2>{curr.eventName}</h2>
-                {editText(curr.description, index, curr.idEvent)}
-                <p>{curr.date}</p>
-            <button onClick={() => setModalShareIsOpen(true)}>compartilha</button>
-            {checkLike(curr.liked, index)}
-            {checkOwner(curr.idUser, index)}
-            </div>
-        })}
+        {checkShare()}
         </div>
         <Modal isOpen={modalIsOpen} onRequestClose={()=>setModalIsOpen(false)}>
-          <ModalEvent></ModalEvent> 
+          <ModalEvent closeModal={setModalIsOpen} ></ModalEvent> 
         </Modal>
         <Modal isOpen={modalShareIsOpen} onRequestClose={()=>setModalShareIsOpen(false)}>
-          <ModalShare ></ModalShare> 
+          <ModalShare closeModal={setModalShareIsOpen} event={eventSelected} ></ModalShare> 
         </Modal>
         </section>
         </div>
