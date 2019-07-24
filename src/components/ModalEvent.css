@@ -1,0 +1,31 @@
+.event-input{
+  width: 100%;
+  margin: 10px;
+  padding: 1px;
+  border: 1px solid #363636;
+}
+
+.event-labels{
+  margin: 10px;
+  color:  #C64706;
+}
+
+.event-button{
+    width: 180px;
+    height: 55px;
+    margin: 20px 5px 0;
+    background-color: #C64706;
+    color: #C1C1C1;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    
+}
+
+.file{
+  padding: 0.5rem 1.5rem;
+  margin: 3px;
+  font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+  color: #5a5a5a;
+}
+/* a */
