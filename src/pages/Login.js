@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Logo from '../images/logo.png';
 import Tab from '../components/Tab';
 import LoginBox from '../components/Login/LoginBox';
 import CadBox from '../components/Login/CadBox';
@@ -14,6 +15,9 @@ function Login (props) {
 
   return (
     <div>
+      <div>
+        <figure className="logo"><img src={Logo}></img></figure>
+      </div>
         <div className="div-nav">
           <nav className="nav_tabs">
   			    <ul>
