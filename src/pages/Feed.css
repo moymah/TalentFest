@@ -1,3 +1,11 @@
-.btn-click {
-    background-color: aqua;
+.custom-button{
+    position: static;
+}
+
+.custom-share-button{
+    position: static;
+}
+
+.custom-card{
+    text-decoration-color: #363636;
 }

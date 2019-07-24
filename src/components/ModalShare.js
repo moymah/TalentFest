@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import firebase from '../firebaseConfig';
 import './ModalShare.css'
 
+
 export default function (props) {
     const [funcionarios, setFuncionarios] = useState([]);
     const [selected, setSelected] = useState([]);
@@ -55,7 +56,7 @@ export default function (props) {
 
  
     
-    return(
+   return(
         <section className="displayBlock">
         <section className="displayFlex">
         {funcionarios.map( (elem, index) => {
